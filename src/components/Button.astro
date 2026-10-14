@@ -1,6 +1,7 @@
 ---
 // Pill button. A real <a> when given href (navigation), otherwise a <button> (actions).
 import type { HTMLAttributes } from 'astro/types';
+import { link } from '../data/link';
 
 type Variant = 'primary' | 'accent' | 'outline' | 'poster';
 type Props = (HTMLAttributes<'a'> | HTMLAttributes<'button'>) & {
@@ -16,7 +17,7 @@ const { variant = 'primary', href, onNight = false, fullOnPhone = false, class: 
 const classes = ['btn', `btn-${variant}`, onNight && 'on-night', fullOnPhone && 'full-phone', className].filter(Boolean).join(' ');
 ---
 {href ? (
-  <a href={href} class={classes} {...(rest as HTMLAttributes<'a'>)}><slot /></a>
+  <a href={link(href)} class={classes} {...(rest as HTMLAttributes<'a'>)}><slot /></a>
 ) : (
   <button type="button" class={classes} {...(rest as HTMLAttributes<'button'>)}><slot /></button>
 )}

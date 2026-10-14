@@ -2,6 +2,7 @@
 // A project card styled like a newspaper column. The whole card is one link.
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
+import { link } from '../data/link';
 
 interface Props {
   href: string;
@@ -14,7 +15,7 @@ interface Props {
 }
 const { href, kicker, title, blurb, image, imageAlt = '', headingLevel: H = 'h3' } = Astro.props;
 ---
-<a class="np-card" href={href}>
+<a class="np-card" href={link(href)}>
   <span class="np-kicker">{kicker}</span>
   {image
     ? <Image src={image} alt={imageAlt} class="np-img" widths={[400, 800]} sizes="(max-width: 700px) 100vw, 600px" />

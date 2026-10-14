@@ -2,6 +2,7 @@
 // Site header: wordmark, page links and Say hi. On phones the links move into a full-screen yellow menu.
 import Button from './Button.astro';
 import { pages } from '../data/site';
+import { link } from '../data/link';
 
 interface Props { current: string }
 const { current } = Astro.props;
@@ -10,9 +11,9 @@ const isCurrent = (href: string) => (href === current ? 'page' : undefined);
 ---
 <header class="site-header">
   <div class="wrap header-row">
-    <a href="/" class="wordmark" aria-current={isCurrent('/')}>LUFT</a>
+    <a href={link('/')} class="wordmark" aria-current={isCurrent('/')}>LUFT</a>
     <nav aria-label="Main" class="header-nav">
-      {links.map((p) => <a href={p.href} class="nav-link" aria-current={isCurrent(p.href)}>{p.label}</a>)}
+      {links.map((p) => <a href={link(p.href)} class="nav-link" aria-current={isCurrent(p.href)}>{p.label}</a>)}
     </nav>
     <div class="header-actions">
       <Button variant="accent" data-say-hi>Say hi</Button>
@@ -25,13 +26,13 @@ const isCurrent = (href: string) => (href === current ? 'page' : undefined);
 
 <dialog id="site-menu" class="site-menu" aria-label="Menu">
   <div class="menu-top">
-    <a href="/" class="wordmark">LUFT</a>
+    <a href={link('/')} class="wordmark">LUFT</a>
     <button type="button" class="menu-btn is-visible" aria-label="Close menu" data-menu-close autofocus>
       <svg aria-hidden="true" width="18" height="18" viewBox="0 0 16 16"><path d="M3 3 L13 13 M13 3 L3 13" /></svg>
     </button>
   </div>
   <nav aria-label="Main (mobile)" class="menu-nav">
-    {pages.map((p) => <a href={p.href} class="menu-link disp" aria-current={isCurrent(p.href)}>{p.label}</a>)}
+    {pages.map((p) => <a href={link(p.href)} class="menu-link disp" aria-current={isCurrent(p.href)}>{p.label}</a>)}
   </nav>
   <Button variant="primary" class="menu-hi" data-say-hi data-menu-close>Say hi</Button>
 </dialog>
