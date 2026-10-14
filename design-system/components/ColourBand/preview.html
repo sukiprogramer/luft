@@ -1,0 +1,25 @@
+<!-- @dsCard group="Layout" height=300 subtitle="Full-width violet section with display title and tilted bordered images." -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..900,0..100,0..1&amp;family=Poppins:wght@400;500;600&amp;family=Bitter:wght@400;700&amp;family=Gochi+Hand&amp;display=swap">
+<style>
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-sans)}
+.disp{font-family:var(--font-display);font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 144}
+.kicker{font:600 13px/1.4 var(--font-sans);letter-spacing:3px;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 24px;border-radius:var(--radius-pill);border:var(--border-bold) solid var(--line);font:600 15px var(--font-sans);text-decoration:none;cursor:pointer;box-sizing:border-box}
+.btn-primary{background:var(--ink);color:var(--paper)}
+.btn-accent{background:var(--yellow);color:var(--on-yellow);border-color:var(--on-yellow)}
+.btn-outline{background:transparent;color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+a{color:var(--blue)}
+</style>
+<section style="background:var(--violet);color:var(--on-violet);border-top:var(--border-bold) solid var(--line);border-bottom:var(--border-bold) solid var(--line)">
+<div style="padding:40px 32px;display:flex;flex-wrap:wrap;gap:32px;align-items:center">
+<div style="flex:1 1 260px;display:flex;flex-direction:column;gap:12px">
+<span class="kicker">A side project on the air</span>
+<h2 class="disp" style="margin:0;font-size:64px;line-height:.92;font-weight:900;color:var(--white)">Radio <span style="color:var(--yellow)">Luft</span></h2>
+</div>
+<div style="flex:1 1 300px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+<img src="/_blob/23121a8b801b720c4d8186951f1e0e2a" alt="Radio Luft post: How do we learn?" style="width:100%;aspect-ratio:4/5;object-fit:cover;border:2px solid var(--on-violet);transform:rotate(-2deg)">
+<img src="/_blob/8e838065983101e73b6d81bcf6c02a18" alt="Radio Luft post: Eos playlist" style="width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top left;border:2px solid var(--on-violet);transform:rotate(2deg)">
+</div>
+</div>
+</section>

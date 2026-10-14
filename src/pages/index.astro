@@ -1,0 +1,159 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Sticker from '../components/Sticker.astro';
+import Squiggle from '../components/Squiggle.astro';
+import NewspaperCard from '../components/NewspaperCard.astro';
+import PosterCard from '../components/PosterCard.astro';
+import ColourBand from '../components/ColourBand.astro';
+import learn from '../assets/radio-luft/how-do-we-learn.jpg';
+import mozaik from '../assets/radio-luft/mozaik.jpg';
+import eosImg from '../assets/radio-luft/eos.jpg';
+
+const projects = [
+  { href: '/work/#paper-dogs', kicker: 'Sample · Illustration & identity · 2025', title: 'Paper Dogs', blurb: 'A line-art identity for a neighbourhood dog café.' },
+  { href: '/work/#trackmate', kicker: 'Sample · Product design · 2025', title: 'Trackmate', blurb: 'An app for passing playlists between friends.' },
+];
+const art = [
+  { href: '/art/#radio', n: '01', title: 'Radio Luft', text: 'Shows, playlists and retreats.', tone: 'violet' },
+  { href: '/art/#comusity', n: '02', title: 'Comusity', text: '[What Comusity is, in a line.]', tone: 'paper' },
+  { href: '/art/#apps', n: '03', title: 'App ideas', text: 'Sketches of apps I want to exist.', tone: 'deep' },
+];
+---
+<Base current="/">
+  <!-- Hero: broken frame -->
+  <section class="wrap hero split">
+    <div class="wide frame">
+      <div class="frame-photo ph-photo" role="img" aria-label="Black and white street photo (placeholder)">[ Your B&amp;W street photo ]</div>
+      <div class="frame-ink ph-ink" role="img" aria-label="Ink character (placeholder)">[ Ink character ]</div>
+      <Sticker lines={['Now', 'playing']} class="frame-sticker" />
+      <Squiggle class="frame-squiggle" />
+    </div>
+    <div class="narrow stack">
+      <p class="kicker">Design · Art · Radio</p>
+      <h1 class="disp hero-title">Work, art <span class="hl">&amp;</span> a little radio.</h1>
+      <p class="standfirst">[One or two lines about who you are, what you make, and where you are based.]</p>
+      <div class="btn-row">
+        <Button href="/work/">See the work</Button>
+        <Button href="/radio-luft/" variant="outline">Tune in to Radio Luft</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Selected work -->
+  <section class="wrap section-tight" aria-labelledby="work-h">
+    <div class="section-head">
+      <h2 id="work-h" class="disp size-m">Selected work</h2>
+      <a href="/work/" class="more">All projects</a>
+    </div>
+    <div class="card-grid work-grid">
+      {projects.map((p) => <NewspaperCard {...p} />)}
+    </div>
+  </section>
+
+  <!-- Radio Luft band -->
+  <ColourBand labelledby="radio-h">
+    <div class="split">
+      <div class="narrow stack">
+        <p class="kicker">A side project on the air</p>
+        <h2 id="radio-h" class="disp size-l">Radio <span class="accent">Luft</span></h2>
+        <p class="radio-quote">Music selections, shows and new music retreats in Belgrade.</p>
+        <Button href="/radio-luft/" variant="accent">Tune in</Button>
+      </div>
+      <div class="wide trio">
+        <Image src={learn} alt="Radio Luft post: How do we learn? New Music Retreats in Belgrade" class="band-img tilt-l" widths={[300, 600]} sizes="(max-width: 700px) 33vw, 260px" />
+        <Image src={mozaik} alt="Radio Luft post: Mozaik, a short text in navy on pale grey" class="band-img drop" widths={[300, 600]} sizes="(max-width: 700px) 33vw, 260px" />
+        <Image src={eosImg} alt="Radio Luft post: the Eos playlist on violet" class="band-img tilt-r" widths={[300, 600]} sizes="(max-width: 700px) 33vw, 260px" />
+      </div>
+    </div>
+  </ColourBand>
+
+  <!-- Art & ideas -->
+  <section class="wrap section art-strip" aria-labelledby="art-h">
+    <PosterCard class="art-poster">
+      <Squiggle slot="doodle" variant="poster" />
+      <h2 slot="headline" id="art-h" class="disp">Art &amp;<br />ideas</h2>
+      <p>A radio for friends, a community, and a notebook of apps I'd like to exist.</p>
+      <Button slot="action" href="/art/" variant="poster">See the art</Button>
+    </PosterCard>
+    <div class="tiles">
+      {art.map((a) => (
+        <a href={a.href} class:list={['tile', `tile-${a.tone}`]}>
+          <span class="caps">{a.n}</span>
+          <span class="disp tile-title">{a.title}</span>
+          <span class="tile-text">{a.text}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="wrap about" aria-labelledby="about-h">
+    <h2 id="about-h" class="kicker">About</h2>
+    <p class="about-text">Hi, I'm Suki. <span class="about-ink" role="img" aria-label="Small ink character (placeholder)"></span> [Your short story: what you design, what you draw, and why you keep a radio on the side.]</p>
+  </section>
+</Base>
+
+<style>
+  .hero { padding-block: var(--space-6) var(--space-9); }
+  .hero-title { font-size: clamp(52px, 6vw, 84px); line-height: 0.98; font-weight: 800; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+  /* Broken frame */
+  .frame { position: relative; padding: 40px 0 60px 40px; }
+  .frame-photo { aspect-ratio: 3 / 2; width: 100%; }
+  .frame-ink {
+    position: absolute; left: 0; bottom: 0; width: 220px; height: 240px;
+    background: var(--paper); color: var(--ink-soft); border-color: var(--ink);
+  }
+  .frame :global(.frame-sticker) { position: absolute; right: calc(-1 * var(--space-5)); top: 0; }
+  .frame :global(.frame-squiggle) { position: absolute; left: var(--space-2); top: var(--space-1); color: var(--ink); }
+  @media (max-width: 599px) {
+    .hero { padding-block: var(--space-4) var(--space-8); }
+    .frame { padding: var(--space-6) 0 var(--space-7) var(--space-5); }
+    .frame-ink { width: 120px; height: 130px; font-size: 11px; }
+    .frame :global(.frame-sticker) { width: 92px; height: 92px; right: calc(-1 * var(--space-2)); }
+  }
+
+  .section-tight { padding-bottom: var(--space-10); }
+  .more { font-weight: 500; font-size: 15px; padding-block: var(--space-3); }
+  .work-grid { gap: var(--space-6); }
+
+  .trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); }
+  .trio :global(.drop) { margin-top: var(--space-6); object-position: top; }
+  .trio :global(.tilt-r) { object-position: top left; }
+
+  .art-strip { display: flex; flex-wrap: wrap; gap: var(--space-6); padding-block: var(--space-10); }
+  .art-strip :global(.art-poster) { flex: 1 1 340px; min-width: 0; }
+  .tiles {
+    flex: 999 1 560px; min-width: 0;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-4);
+  }
+  .tile {
+    min-height: 300px; padding: var(--space-5);
+    border: var(--border-bold) solid var(--line);
+    display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-3);
+    text-decoration: none; color: var(--ink);
+  }
+  .tile:hover { color: var(--ink); }
+  .tile:hover .tile-title { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; }
+  .tile-violet { background: var(--violet); color: var(--on-violet); border-color: var(--on-violet); }
+  .tile-violet:hover { color: var(--on-violet); }
+  .tile-paper { background: var(--paper); }
+  .tile-deep { background: var(--paper-deep); }
+  .tile-title { font-size: 40px; line-height: 0.95; }
+  .tile-text { font-size: 14px; line-height: 1.5; }
+  @media (max-width: 599px) {
+    .art-strip { padding-block: var(--space-8); }
+    .tile { min-height: 200px; }
+  }
+
+  .about { max-width: 860px; padding-bottom: var(--space-10); display: flex; flex-direction: column; gap: var(--space-5); }
+  .about-text { font: 400 clamp(26px, 3vw, 38px)/1.35 var(--font-display); }
+  .about-ink {
+    display: inline-block; width: 64px; height: 40px; vertical-align: middle;
+    border: var(--border-bold) dashed var(--ink); border-radius: var(--radius-0);
+  }
+  @media (max-width: 599px) { .about { padding-bottom: var(--space-8); } }
+</style>

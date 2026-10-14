@@ -1,0 +1,142 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import ColourBand from '../components/ColourBand.astro';
+import Player from '../components/Player.astro';
+import { eos } from '../data/eos';
+import { site } from '../data/site';
+import learn from '../assets/radio-luft/how-do-we-learn.jpg';
+import feed from '../assets/radio-luft/ig-grid.jpg';
+
+const shows = [
+  { tag: 'Retreat', title: 'Couch potatoes', by: 'Retreat @ radio.luft', tone: 'yellow' },
+  { tag: 'Emisija #7', title: 'Road tunes reimagined', by: 'Marko @ radio.luft', tone: 'blue' },
+  { tag: 'Emisija #6', title: 'Journey into the Unknown', by: 'Pitomi Oblak @ radio.luft', tone: 'violet' },
+  { tag: '2024 Wrapped', title: 'Top 3 stories na našem!', by: '2024 Wrapped @ radio.luft', tone: 'night', lang: 'sr' },
+];
+---
+<Base title="Radio Luft" current="/radio-luft/" description="Radio Luft: music selections, shows and new music retreats in Belgrade.">
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="radio-title">
+    <Image src={learn} alt="" class="hero-bg" widths={[800, 1600]} sizes="100vw" loading="eager" />
+    <div class="wrap hero-inner">
+      <p class="kicker">Music selections from Belgrade</p>
+      <h1 id="radio-title" class="disp hero-title">Radio<br /><span class="accent">Luft</span></h1>
+      <p class="hero-text slab">Shows, playlists and new music retreats, picked by friends.</p>
+      <div class="btn-row">
+        <Button href={site.instagram.href} variant="accent">Follow @radio.luft</Button>
+        <Button href="#shows" variant="outline" class="on-hero">Browse the shows</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- The shows -->
+  <section id="shows" class="wrap section" aria-labelledby="shows-h">
+    <div class="section-head">
+      <h2 id="shows-h" class="disp size-m">The shows</h2>
+      <span class="caps soft" lang="sr">Emisije</span>
+    </div>
+    <ul class="shows" role="list">
+      {shows.map((s) => (
+        <li class:list={['show', `show-${s.tone}`]}>
+          <span class="caps" lang={s.tag.startsWith('Emisija') ? 'sr' : undefined}>{s.tag}</span>
+          <h3 class="disp show-title" lang={s.lang}>{s.title}</h3>
+          <span class="byline">{s.by}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- Eos player + Mozaik -->
+  <section class="wrap listen">
+    <div class="listen-player"><Player {...eos} /></div>
+    <figure class="mozaik">
+      <span class="disp mozaik-title">Mozaik</span>
+      <blockquote lang="sr" class="radio-quote">Uzmeš delove od nota i reči koji sami po sebi možda nemaju mnogo smisla, ali kada ih spojiš u mozaik, čuje se samo klik. Klik koji te natera da raširiš ruke, pogledaš u oči, dodirneš i osetiš. A zatim zažmuriš i poželiš da vreme, barem na momenat, stane, da obiđeš <b>svaki ćošak tog trenutka.</b></blockquote>
+      <figcaption class="byline">Nikola @ radio.luft</figcaption>
+    </figure>
+  </section>
+
+  <!-- Retreats -->
+  <ColourBand tone="yellow" labelledby="retreats-h">
+    <div class="split">
+      <div class="narrow stack">
+        <p class="kicker">New music retreats · Belgrade</p>
+        <h2 id="retreats-h" class="disp size-l">How do we <span class="hl-white">learn?</span></h2>
+        <p class="retreat-text">[A few lines about the retreats: who comes, what happens, when the next one is.]</p>
+      </div>
+      <Image src={learn} alt="Radio Luft retreat poster: How do we learn? New Music Retreats in Belgrade" class="wide retreat-img" widths={[600, 1200]} sizes="(max-width: 900px) 100vw, 640px" />
+    </div>
+  </ColourBand>
+
+  <!-- From the feed -->
+  <section class="wrap section feed" aria-labelledby="feed-h">
+    <div class="section-head">
+      <h2 id="feed-h" class="disp size-m">From the feed</h2>
+      <a href={site.instagram.href} class="more">See everything on Instagram</a>
+    </div>
+    <Image src={feed} alt="Grid of Radio Luft Instagram posts: Couch potatoes, Road tunes reimagined, Journey into the Unknown, Top 3 stories and photos from Belgrade" class="feed-img" widths={[640, 1280]} sizes="(max-width: 1340px) 100vw, 1216px" />
+  </section>
+</Base>
+
+<style>
+  .hero { position: relative; background: var(--hero-ground); color: var(--on-hero); overflow: hidden; }
+  .hero :global(.hero-bg) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; }
+  .hero-inner {
+    position: relative; padding-block: 140px 120px;
+    display: flex; flex-direction: column; gap: var(--space-5); align-items: center; text-align: center;
+  }
+  .hero-title { font-size: clamp(84px, 13vw, 200px); line-height: 0.85; color: var(--white); }
+  .hero-title .accent { color: var(--yellow); }
+  .hero-text { font-size: 22px; line-height: 1.5; max-width: 560px; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
+  .hero :global(.btn) { align-self: auto; }
+  .hero :global(.on-hero) { color: var(--on-hero); border-color: var(--on-hero); }
+  .hero :global(.on-hero:hover) { background: transparent; color: var(--yellow); border-color: var(--yellow); }
+  @media (max-width: 599px) {
+    .hero-inner { padding-block: var(--space-9) var(--space-8); }
+    .hero-text { font-size: 18px; }
+  }
+
+  .soft { color: var(--ink-soft); }
+  .more { font-weight: 500; font-size: 15px; padding-block: var(--space-3); }
+  .shows {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-5);
+  }
+  .show {
+    min-height: 300px; padding: 28px; border: var(--border-bold) solid var(--on-yellow);
+    display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-4);
+  }
+  .show-title { font-size: 40px; line-height: 0.95; }
+  .show-yellow { background: var(--yellow); color: var(--on-yellow); }
+  .show-blue { background: var(--hero-ground); color: var(--on-hero); }
+  .show-violet { background: var(--violet); color: var(--on-violet); }
+  .show-night { background: var(--night); color: var(--on-night); }
+  @media (max-width: 599px) { .show { min-height: 220px; } }
+
+  .listen { display: flex; flex-wrap: wrap; gap: var(--space-6); padding-bottom: var(--space-9); }
+  .listen-player { flex: 999 1 560px; min-width: 0; }
+  .mozaik {
+    flex: 1 1 340px; min-width: 0; background: var(--quote-ground); color: var(--blue);
+    padding: var(--space-7); display: flex; flex-direction: column; gap: var(--space-5);
+  }
+  .mozaik blockquote { margin: 0; }
+  .mozaik-title { font-size: 48px; line-height: 1; }
+  @media (max-width: 599px) {
+    .listen { padding-bottom: var(--space-8); }
+    .mozaik { padding: var(--space-5); }
+  }
+
+  .hl-white { color: var(--white); -webkit-text-stroke: 2px var(--on-yellow); paint-order: stroke fill; }
+  .retreat-text { font-size: 17px; line-height: 1.65; max-width: 460px; }
+  .split :global(.retreat-img) {
+    width: 100%; aspect-ratio: 1 / 1; object-fit: cover;
+    border: var(--border-bold) solid var(--on-yellow); transform: rotate(1.5deg);
+  }
+
+  .feed { padding-bottom: var(--space-10); }
+  .feed :global(.feed-img) { width: 100%; border: var(--border-bold) solid var(--line); }
+  @media (max-width: 599px) { .feed { padding-bottom: var(--space-8); } }
+</style>

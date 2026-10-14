@@ -1,0 +1,28 @@
+<!-- @dsCard group="Navigation" height=360 subtitle="Dark footer with a big Say hi, page links and contacts." -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..900,0..100,0..1&amp;family=Poppins:wght@400;500;600&amp;family=Bitter:wght@400;700&amp;family=Gochi+Hand&amp;display=swap">
+<style>
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-sans)}
+.disp{font-family:var(--font-display);font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 144}
+.kicker{font:600 13px/1.4 var(--font-sans);letter-spacing:3px;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 24px;border-radius:var(--radius-pill);border:var(--border-bold) solid var(--line);font:600 15px var(--font-sans);text-decoration:none;cursor:pointer;box-sizing:border-box}
+.btn-primary{background:var(--ink);color:var(--paper)}
+.btn-accent{background:var(--yellow);color:var(--on-yellow);border-color:var(--on-yellow)}
+.btn-outline{background:transparent;color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+a{color:var(--blue)}
+</style>
+<footer style="background:var(--night);color:var(--on-night);font-family:var(--font-sans)">
+<div style="padding:56px 32px 28px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<h2 class="disp" style="margin:0;font-size:96px;line-height:.9;font-weight:900">Say <span style="color:var(--yellow)">hi.</span></h2>
+<button type="button" class="btn btn-accent" style="align-self:flex-start;border-color:var(--yellow)">Get in touch</button>
+</div>
+<div style="display:flex;gap:48px;font-size:15px">
+<div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:11px;font-weight:600;letter-spacing:2px;color:var(--on-photo)">PAGES</span><a href="#" style="color:var(--on-night);text-decoration:none">Home</a><a href="#" style="color:var(--on-night);text-decoration:none">Work</a><a href="#" style="color:var(--on-night);text-decoration:none">Art</a><a href="#" style="color:var(--on-night);text-decoration:none">Radio Luft</a></div>
+<div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:11px;font-weight:600;letter-spacing:2px;color:var(--on-photo)">ELSEWHERE</span><a href="#" style="color:var(--on-night);text-decoration:none">LinkedIn</a><a href="#" style="color:var(--on-night);text-decoration:none">Instagram</a><a href="#" style="color:var(--on-night);text-decoration:none">[your@email]</a></div>
+</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;border-top:1px solid var(--ink-soft);padding-top:16px;font-size:13px;color:var(--on-photo)"><span style="font-family:var(--font-hand);font-size:28px;letter-spacing:2px;color:var(--on-night)">LUFT</span><span>Made with paper, ink and a lot of music. © [Year] Suki</span></div>
+</div>
+</footer>

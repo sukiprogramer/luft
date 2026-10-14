@@ -1,0 +1,31 @@
+---
+// A gig-poster block: big display headline, one doodle, a line of text and one button.
+// Slots: "headline" (required), default (body text), "action" (the button), "doodle" (top-right).
+interface Props { tone?: 'yellow' | 'violet'; id?: string; minHeight?: string; class?: string; labelledby?: string }
+const { tone = 'yellow', id, minHeight = '420px', class: className, labelledby } = Astro.props;
+---
+<div class:list={['poster', `poster-${tone}`, className]} id={id} style={`--poster-min: ${minHeight}`} aria-labelledby={labelledby}>
+  <div class="poster-doodle"><slot name="doodle" /></div>
+  <slot name="headline" />
+  <div class="poster-body"><slot /></div>
+  <slot name="action" />
+</div>
+
+<style>
+  .poster {
+    position: relative;
+    display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-6);
+    padding: var(--space-7);
+    min-height: var(--poster-min);
+    border: var(--border-bold) solid var(--on-yellow);
+    border-radius: var(--radius-0);
+  }
+  .poster-yellow { background: var(--yellow); color: var(--on-yellow); }
+  .poster-violet { background: var(--violet); color: var(--on-violet); border-color: var(--on-violet); }
+  .poster-violet :global(.disp) { color: var(--white); }
+  .poster :global(.disp) { font-size: clamp(52px, 5vw, 72px); line-height: 0.92; padding-right: var(--space-8); }
+  .poster-doodle { position: absolute; right: var(--space-6); top: var(--space-6); color: currentColor; }
+  .poster-doodle:empty { display: none; }
+  .poster-body { font-size: 16px; line-height: 1.6; }
+  @media (max-width: 599px) { .poster { padding: var(--space-6); } }
+</style>

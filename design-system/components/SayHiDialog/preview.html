@@ -1,0 +1,27 @@
+<!-- @dsCard group="Overlays" height=560 subtitle="Contact dialog with photo, LinkedIn, Instagram and email." -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..900,0..100,0..1&amp;family=Poppins:wght@400;500;600&amp;family=Bitter:wght@400;700&amp;family=Gochi+Hand&amp;display=swap">
+<style>
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-sans)}
+.disp{font-family:var(--font-display);font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 144}
+.kicker{font:600 13px/1.4 var(--font-sans);letter-spacing:3px;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 24px;border-radius:var(--radius-pill);border:var(--border-bold) solid var(--line);font:600 15px var(--font-sans);text-decoration:none;cursor:pointer;box-sizing:border-box}
+.btn-primary{background:var(--ink);color:var(--paper)}
+.btn-accent{background:var(--yellow);color:var(--on-yellow);border-color:var(--on-yellow)}
+.btn-outline{background:transparent;color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+a{color:var(--blue)}
+</style>
+<div style="background:var(--scrim);padding:32px 16px;display:flex;justify-content:center">
+<div role="dialog" aria-modal="true" aria-labelledby="hi" style="position:relative;width:100%;max-width:440px;background:var(--paper);border:2px solid var(--line);box-shadow:var(--shadow-offset);padding:36px 28px 28px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center">
+<button type="button" aria-label="Close" style="position:absolute;top:12px;right:12px;width:44px;height:44px;border-radius:999px;border:2px solid var(--line);background:var(--paper);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16"><path d="M3 3 L13 13 M13 3 L3 13" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"></path></svg></button>
+<div style="position:relative;width:120px;height:120px;display:flex;align-items:center;justify-content:center">
+<svg aria-hidden="true" width="120" height="120" viewBox="0 0 128 128" style="position:absolute;inset:0"><polygon points="124.0,64.0 108.8,74.2 118.1,90.0 100.0,92.7 101.4,110.9 84.0,105.4 77.4,122.5 64.0,110.0 50.6,122.5 44.0,105.4 26.6,110.9 28.0,92.7 9.9,90.0 19.2,74.2 4.0,64.0 19.2,53.8 9.9,38.0 28.0,35.3 26.6,17.1 44.0,22.6 50.6,5.5 64.0,18.0 77.4,5.5 84.0,22.6 101.4,17.1 100.0,35.3 118.1,38.0 108.8,53.8" fill="var(--yellow)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"></polygon></svg>
+<div role="img" aria-label="Photo of Suki (placeholder)" style="position:relative;width:88px;height:88px;border-radius:999px;background:var(--photo);border:2px solid var(--line);color:var(--on-photo);font-size:10px;display:flex;align-items:center;justify-content:center">[ PHOTO ]</div>
+</div>
+<h2 id="hi" class="disp" style="margin:0;font-size:52px;line-height:.95;font-weight:900">Say <span style="color:var(--violet)">hi.</span></h2>
+<p style="margin:0;font-size:15px;line-height:1.6;color:var(--ink-soft)">I'm Suki. [What you're open to.]</p>
+<a href="#" style="width:100%;box-sizing:border-box;padding:14px 18px;border:2px solid var(--line);border-radius:var(--radius-md);color:var(--ink);text-decoration:none;display:flex;justify-content:space-between;font-weight:500"><span>LinkedIn</span><span aria-hidden="true">→</span></a>
+<a href="#" style="width:100%;box-sizing:border-box;padding:14px 18px;border:2px solid var(--line);border-radius:var(--radius-md);background:var(--violet);color:var(--on-violet);text-decoration:none;display:flex;justify-content:space-between;font-weight:500"><span>Instagram · @radio.luft</span><span aria-hidden="true">→</span></a>
+<a href="#" style="width:100%;box-sizing:border-box;padding:14px 18px;border:2px solid var(--line);border-radius:var(--radius-md);background:var(--yellow);color:var(--on-yellow);text-decoration:none;display:flex;justify-content:space-between;font-weight:500"><span>[your@email]</span><span aria-hidden="true">→</span></a>
+</div>
+</div>

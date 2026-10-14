@@ -1,0 +1,176 @@
+---
+import Base from '../layouts/Base.astro';
+import ColourBand from '../components/ColourBand.astro';
+import PosterCard from '../components/PosterCard.astro';
+---
+<Base title="Work" current="/work/" description="Selected work by Suki: illustration, identity and product design.">
+  <!-- Index -->
+  <section class="wrap index">
+    <div class="masthead caps"><span>Selected work</span><span>2 sample projects</span></div>
+    <h1 class="disp size-xl">Work</h1>
+    <p class="sample-note">These two projects are samples written to show the layout. [Swap in your real projects.]</p>
+    <div class="card-grid">
+      <a href="#paper-dogs" class="index-card index-yellow">
+        <span class="caps">01 · Illustration &amp; identity</span>
+        <span class="disp index-title">Paper Dogs</span>
+        <span>A line-art identity for a neighbourhood dog café <span aria-hidden="true">→</span></span>
+      </a>
+      <a href="#trackmate" class="index-card index-violet">
+        <span class="caps">02 · Product design</span>
+        <span class="disp index-title">Trackmate</span>
+        <span>An app for passing playlists between friends <span aria-hidden="true">→</span></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Case study 01 -->
+  <article id="paper-dogs" class="wrap case" aria-labelledby="pd-h">
+    <div class="masthead caps"><span>Case study · No. 01</span><span>Sample project</span><span>2025</span></div>
+    <h2 id="pd-h" class="size-headline">Paper Dogs: a café that draws its regulars</h2>
+    <p class="lede">A small café where people bring their dogs wanted a look as friendly as the room. The answer was a cast of ink characters, one for every kind of regular.</p>
+    <dl class="facts">
+      <div><dt>Role</dt><dd>Illustration, identity</dd></div>
+      <div><dt>Made</dt><dd>Wordmark, characters, posters, menu</dd></div>
+      <div><dt>Client</dt><dd>[Café name]</dd></div>
+      <div><dt>Year</dt><dd>2025</dd></div>
+    </dl>
+
+    <div class="pd-visuals">
+      <PosterCard class="pd-poster" minHeight="480px">
+        <span slot="headline" class="disp pd-word" aria-hidden="true">Paper<br />Dogs</span>
+        <div class="ph-ink pd-dog" role="img" aria-label="Ink dog character (placeholder)">[ Ink dog with a coffee ]</div>
+        <div slot="action" class="pd-hours caps"><span>Open every day</span><span>08–20</span></div>
+      </PosterCard>
+      <div class="pd-grid">
+        <div class="ph-photo tall" role="img" aria-label="Menu photo (placeholder)">[ Menu ]</div>
+        <div class="ph-ink tall deep" role="img" aria-label="Cups photo (placeholder)">[ Cups ]</div>
+        <div class="ph-ink wide-2 deep" role="img" aria-label="Sticker sheet photo (placeholder)">[ Sticker sheet ]</div>
+      </div>
+    </div>
+
+    <div class="pd-text">
+      <aside class="short">
+        <span class="caps">The short version</span>
+        <p class="short-quote">One set of characters, drawn once, used everywhere from the door sign to the napkins.</p>
+      </aside>
+      <div class="columns">
+        <h3>The brief</h3>
+        <p>Make the café feel like a neighbour, not a chain. Everything had to print cheaply in one colour plus black.</p>
+        <h3>The idea</h3>
+        <p>I sketched the dogs that came in every morning and turned them into a cast: the reader, the napper, the one who steals croissants. A hand-lettered wordmark ties them together.</p>
+        <h3>The outcome</h3>
+        <p>Posters, a menu, cups and a sticker sheet that regulars collect. [Swap in a real result.]</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- Case study 02 -->
+  <ColourBand as="article" id="trackmate" labelledby="tm-h">
+    <div class="case">
+      <div class="masthead caps"><span>Case study · No. 02</span><span>Sample project</span><span>2025</span></div>
+      <div class="split tm-split">
+        <div class="wide stack">
+          <h2 id="tm-h" class="size-headline tm-h">Trackmate: mixtapes, but in your pocket</h2>
+          <p class="radio-quote">A concept app that grew out of Radio Luft: friends pass one playlist around, each adding a song and a line about why.</p>
+          <dl class="facts">
+            <div><dt>Role</dt><dd>Product design, UI</dd></div>
+            <div><dt>Made</dt><dd>Flows, prototype</dd></div>
+            <div><dt>Type</dt><dd>Personal concept</dd></div>
+          </dl>
+          <div class="columns narrow-cols">
+            <p><b>The problem.</b> Shared playlists turn into piles. Nobody remembers who added what, or why it mattered.</p>
+            <p><b>The idea.</b> One song per turn, one note per song. The playlist reads like a letter written by a group of friends.</p>
+          </div>
+        </div>
+        <div class="narrow phone-wrap">
+          <div class="phone" role="img" aria-label="Trackmate app mockup: a playlist called Road tunes, passed on by Marko, with a prompt to add your song">
+            <div class="screen" aria-hidden="true">
+              <span class="caps muted">Passed to you by Marko</span>
+              <span class="disp phone-title">Road tunes</span>
+              <div class="bubble"><span class="slab"><b>Shadows</b> · Bonobo</span><span class="note">“For the long drive out of the city.”</span></div>
+              <div class="bubble"><span class="slab"><b>Canopée</b> · Polo &amp; Pan</span><span class="note">“Windows down.”</span></div>
+              <div class="bubble your-turn"><span class="caps">Your turn</span><span class="note">Add one song and say why</span></div>
+              <span class="pass">Pass it on</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ColourBand>
+
+  <a href="#main" class="back-top">
+    <span class="wrap back-row">
+      <span class="kicker">Back to the top</span>
+      <span class="disp back-title">Paper Dogs <span aria-hidden="true">↑</span></span>
+    </span>
+  </a>
+</Base>
+
+<style>
+  .index { padding-block: var(--space-6) var(--space-8); display: flex; flex-direction: column; gap: var(--space-6); }
+  .sample-note { font-size: 14px; color: var(--muted); }
+  .index-card {
+    display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-3);
+    min-height: 220px; padding: 28px;
+    border: var(--border-bold) solid var(--on-yellow); text-decoration: none; font-size: 15px;
+  }
+  .index-yellow { background: var(--yellow); color: var(--on-yellow); }
+  .index-violet { background: var(--violet); color: var(--on-violet); border-color: var(--on-violet); }
+  .index-violet .index-title { color: var(--white); }
+  .index-card:hover { color: inherit; }
+  .index-card:hover .index-title { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 8px; }
+  .index-title { font-size: clamp(44px, 5vw, 56px); line-height: 0.92; }
+
+  .case { display: flex; flex-direction: column; gap: 40px; }
+  article.case { padding-block: var(--space-8) var(--space-9); }
+  .lede { font-size: 20px; line-height: 1.6; color: var(--ink-soft); max-width: 720px; }
+  .facts dt { color: var(--ink-soft); }
+  .size-headline { max-width: 1000px; }
+
+  .pd-visuals { display: flex; flex-wrap: wrap; gap: var(--space-5); }
+  .pd-visuals :global(.pd-poster) { flex: 1 1 360px; min-width: 0; }
+  .pd-word { font-size: clamp(64px, 8vw, 88px) !important; line-height: 0.88 !important; }
+  .pd-dog { align-self: center; width: min(220px, 100%); height: 180px; margin-inline: auto; }
+  .pd-hours { display: flex; justify-content: space-between; }
+  .pd-grid { flex: 1 1 360px; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-5); }
+  .tall { aspect-ratio: 3 / 4; }
+  .wide-2 { grid-column: span 2; aspect-ratio: 2 / 1; }
+  .deep { background: var(--paper-deep); }
+
+  .pd-text { display: flex; flex-wrap: wrap; gap: var(--space-7); }
+  .short { flex: 1 1 260px; min-width: 0; align-self: flex-start; background: var(--paper-deep); padding: 28px; display: flex; flex-direction: column; gap: var(--space-3); }
+  .short-quote { font: 400 26px/1.2 var(--font-display); }
+  .columns { flex: 999 1 640px; min-width: 0; column-width: 300px; column-gap: 40px; font-size: 16px; line-height: 1.75; }
+  .columns h3 { font: 500 26px/1.2 var(--font-display); margin: 0 0 10px; break-after: avoid; }
+  .columns p { margin: 0 0 var(--space-5); }
+  .narrow-cols { column-width: 260px; }
+
+  .tm-split { gap: 56px; }
+  .tm-h { color: var(--on-violet); }
+  .phone-wrap { display: flex; justify-content: center; }
+  .phone {
+    width: 300px; max-width: 100%; background: var(--night); border-radius: 44px; padding: var(--space-3);
+    box-shadow: 12px 12px 0 var(--yellow);
+  }
+  .screen {
+    background: var(--paper); color: var(--ink); border-radius: 34px; padding: 28px var(--space-5);
+    display: flex; flex-direction: column; gap: 14px; min-height: 560px;
+  }
+  .muted { color: var(--ink-soft); font-size: 11px; }
+  .phone-title { font-size: 40px; line-height: 0.95; color: var(--ink) !important; }
+  .bubble { background: var(--paper-deep); border-radius: var(--radius-md); padding: var(--space-3); display: flex; flex-direction: column; gap: var(--space-1); font-size: 15px; }
+  .bubble .note { font-size: 12px; color: var(--ink-soft); }
+  .your-turn { background: var(--yellow); color: var(--on-yellow); border: var(--border-bold) solid var(--on-yellow); }
+  .your-turn .note { color: var(--on-yellow); font-size: 13px; }
+  .pass { margin-top: auto; background: var(--ink); color: var(--paper); border-radius: var(--radius-pill); padding: 14px; text-align: center; font-size: 14px; font-weight: 600; }
+
+  .back-top { display: block; color: var(--ink); text-decoration: none; }
+  .back-top:hover { color: var(--ink); }
+  .back-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: var(--space-4); padding-block: 56px; }
+  .back-title { font-size: clamp(32px, 4vw, 56px); font-weight: 800; }
+  .back-top:hover .back-title { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 8px; }
+  @media (max-width: 599px) {
+    article.case { padding-block: var(--space-7) var(--space-8); }
+    .lede { font-size: 18px; }
+  }
+</style>

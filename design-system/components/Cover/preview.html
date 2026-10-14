@@ -1,0 +1,34 @@
+<!-- @dsCard height=288 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..900,0..100,0..1&amp;family=Poppins:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:var(--paper)}
+.cover{position:relative;width:960px;height:288px;overflow:hidden;background:var(--paper)}
+.cover svg{position:absolute;inset:0}
+.yel{fill:var(--yellow)}.vio{fill:var(--violet)}.ink{fill:var(--ink)}.blu{fill:var(--blue)}
+.amp{fill:var(--paper);font-family:var(--font-display);font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 144;font-weight:900;font-size:300px}
+.star{fill:var(--yellow);stroke:var(--ink);stroke-width:2.5;stroke-linejoin:round}
+.name{position:absolute;left:40px;bottom:40px;max-width:440px;display:flex;flex-direction:column;gap:12px}
+.name h1{margin:0;font-family:var(--font-display);font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 144;font-weight:900;font-size:120px;line-height:.92;color:var(--ink)}
+.name p{margin:0;font:400 14px/1.4 var(--font-sans);color:var(--ink-soft)}
+</style>
+<div class="cover">
+<svg width="960" height="288" viewBox="0 0 960 288" aria-hidden="true">
+<!--
+blocks: yellow 192x224 (space-9*2), violet 240x224, ink 96x64 (space-9 x space-8), blue 144x48 (space-7) - all radius-0
+arrangement: staggered poster stack right of x=480, yellow and violet bleeding off top, right and bottom like a pasted gig poster
+pattern: "a distinctive display face -> one oversized glyph" - the Fraunces soft/wonky ampersand from the hero headline, cut out of violet, plus the one starburst sticker the brand uses per screen
+scales: space-7 48, space-8 64, space-9 96; radius-0 on every block
+-->
+<defs><clipPath id="vclip"><rect x="720" y="64" width="240" height="224"></rect></clipPath></defs>
+<rect class="blu" x="816" y="0" width="144" height="48"></rect>
+<rect class="yel" x="528" y="0" width="192" height="224"></rect>
+<rect class="vio" x="720" y="64" width="240" height="224"></rect>
+<rect class="ink" x="624" y="224" width="96" height="64"></rect>
+<text class="amp" x="752" y="330" clip-path="url(#vclip)">&amp;</text>
+<g transform="translate(676 20) scale(0.75)"><polygon class="star" points="124.0,64.0 108.8,74.2 118.1,90.0 100.0,92.7 101.4,110.9 84.0,105.4 77.4,122.5 64.0,110.0 50.6,122.5 44.0,105.4 26.6,110.9 28.0,92.7 9.9,90.0 19.2,74.2 4.0,64.0 19.2,53.8 9.9,38.0 28.0,35.3 26.6,17.1 44.0,22.6 50.6,5.5 64.0,18.0 77.4,5.5 84.0,22.6 101.4,17.1 100.0,35.3 118.1,38.0 108.8,53.8"></polygon></g>
+</svg>
+<div class="name">
+<h1>Luft</h1>
+<p>Paper, ink and the radio on: the design system for Suki's work, art and Radio Luft.</p>
+</div>
+</div>

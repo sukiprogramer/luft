@@ -1,0 +1,48 @@
+---
+// Pill button. A real <a> when given href (navigation), otherwise a <button> (actions).
+import type { HTMLAttributes } from 'astro/types';
+
+type Variant = 'primary' | 'accent' | 'outline' | 'poster';
+type Props = (HTMLAttributes<'a'> | HTMLAttributes<'button'>) & {
+  variant?: Variant;
+  href?: string;
+  /** On the night footer the accent border turns yellow. */
+  onNight?: boolean;
+  /** Stretch to full width on phones. */
+  fullOnPhone?: boolean;
+};
+
+const { variant = 'primary', href, onNight = false, fullOnPhone = false, class: className, ...rest } = Astro.props;
+const classes = ['btn', `btn-${variant}`, onNight && 'on-night', fullOnPhone && 'full-phone', className].filter(Boolean).join(' ');
+---
+{href ? (
+  <a href={href} class={classes} {...(rest as HTMLAttributes<'a'>)}><slot /></a>
+) : (
+  <button type="button" class={classes} {...(rest as HTMLAttributes<'button'>)}><slot /></button>
+)}
+
+<style is:global>
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: var(--touch-min);
+    padding: 0 var(--space-5);
+    border-radius: var(--radius-pill);
+    border: var(--border-bold) solid var(--line);
+    font: 600 15px/1.2 var(--font-sans);
+    text-decoration: none; text-align: center;
+    cursor: pointer;
+    align-self: flex-start;
+  }
+  .btn:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { color: var(--paper); }
+  .btn-accent { background: var(--yellow); color: var(--on-yellow); border-color: var(--on-yellow); }
+  .btn-accent:hover { color: var(--on-yellow); }
+  .btn-accent.on-night { border-color: var(--yellow); }
+  .btn-outline { background: transparent; color: var(--ink); }
+  .btn-outline:hover { color: var(--ink); background: var(--paper-deep); }
+  /* Primary button on a yellow poster: dark ground, yellow text. */
+  .btn-poster { background: var(--on-yellow); color: var(--yellow); border-color: var(--on-yellow); }
+  .btn-poster:hover { color: var(--yellow); }
+  @media (max-width: 599px) { .btn.full-phone { width: 100%; } }
+</style>
