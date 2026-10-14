@@ -11,7 +11,13 @@ npm run build    # static site in dist/
 npm run preview  # serve the build
 ```
 
-The build is plain static HTML, CSS and a little JavaScript, so `dist/` can go on any static host (Netlify, Vercel, Cloudflare Pages or GitHub Pages).
+The build is plain static HTML, CSS and a little JavaScript.
+
+## Hosting
+
+Every push to `main` deploys to GitHub Pages at https://sukiprogramer.github.io/luft/ through `.github/workflows/deploy.yml`. Pages must be switched on once: repo **Settings → Pages → Source: GitHub Actions**.
+
+Links in the source are root-relative (`/work/`) and go through `link()` in `src/data/link.ts`, which adds the `/luft` base. With a custom domain, set `site` to it in `astro.config.mjs` and remove `base`.
 
 ## Where things live
 

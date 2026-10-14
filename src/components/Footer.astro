@@ -2,6 +2,7 @@
 // The dark footer that closes every page.
 import Button from './Button.astro';
 import { pages, site } from '../data/site';
+import { link } from '../data/link';
 ---
 <footer class="site-footer" id="contact">
   <div class="wrap footer-inner">
@@ -13,7 +14,7 @@ import { pages, site } from '../data/site';
       <div class="footer-links">
         <nav aria-label="Footer" class="link-col">
           <span class="footer-label">Pages</span>
-          {pages.map((p) => <a href={p.href}>{p.label}</a>)}
+          {pages.map((p) => <a href={link(p.href)}>{p.label}</a>)}
         </nav>
         <div class="link-col">
           <span class="footer-label">Elsewhere</span>

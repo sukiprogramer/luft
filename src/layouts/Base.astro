@@ -5,6 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SayHiDialog from '../components/SayHiDialog.astro';
 import { site } from '../data/site';
+import { link } from '../data/link';
 
 interface Props { title?: string; description?: string; current: string }
 const { title, description = site.description, current } = Astro.props;
@@ -17,7 +18,7 @@ const pageTitle = title ? `${title} · Luft` : 'Luft · Work, art & a little rad
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={link('/favicon.svg')} type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..900,0..100,0..1&family=Poppins:wght@400;500;600&family=Bitter:wght@400;700&family=Gochi+Hand&display=swap" />

@@ -7,6 +7,7 @@ import Squiggle from '../components/Squiggle.astro';
 import NewspaperCard from '../components/NewspaperCard.astro';
 import PosterCard from '../components/PosterCard.astro';
 import ColourBand from '../components/ColourBand.astro';
+import { link } from '../data/link';
 import learn from '../assets/radio-luft/how-do-we-learn.jpg';
 import mozaik from '../assets/radio-luft/mozaik.jpg';
 import eosImg from '../assets/radio-luft/eos.jpg';
@@ -45,7 +46,7 @@ const art = [
   <section class="wrap section-tight" aria-labelledby="work-h">
     <div class="section-head">
       <h2 id="work-h" class="disp size-m">Selected work</h2>
-      <a href="/work/" class="more">All projects</a>
+      <a href={link('/work/')} class="more">All projects</a>
     </div>
     <div class="card-grid work-grid">
       {projects.map((p) => <NewspaperCard {...p} />)}
@@ -79,7 +80,7 @@ const art = [
     </PosterCard>
     <div class="tiles">
       {art.map((a) => (
-        <a href={a.href} class:list={['tile', `tile-${a.tone}`]}>
+        <a href={link(a.href)} class:list={['tile', `tile-${a.tone}`]}>
           <span class="caps">{a.n}</span>
           <span class="disp tile-title">{a.title}</span>
           <span class="tile-text">{a.text}</span>
