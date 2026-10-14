@@ -1,0 +1,22 @@
+<!-- @dsCard group="Navigation" height=120 subtitle="Site header with the LUFT wordmark, page links and the Say hi button." -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..900,0..100,0..1&amp;family=Poppins:wght@400;500;600&amp;family=Bitter:wght@400;700&amp;family=Gochi+Hand&amp;display=swap">
+<style>
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-sans)}
+.disp{font-family:var(--font-display);font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 144}
+.kicker{font:600 13px/1.4 var(--font-sans);letter-spacing:3px;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 24px;border-radius:var(--radius-pill);border:var(--border-bold) solid var(--line);font:600 15px var(--font-sans);text-decoration:none;cursor:pointer;box-sizing:border-box}
+.btn-primary{background:var(--ink);color:var(--paper)}
+.btn-accent{background:var(--yellow);color:var(--on-yellow);border-color:var(--on-yellow)}
+.btn-outline{background:transparent;color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+a{color:var(--blue)}
+</style>
+<header style="padding:20px 32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;background:var(--paper)">
+<a href="#" style="font-family:var(--font-hand);font-size:44px;line-height:1;letter-spacing:2px;color:var(--ink);text-decoration:none">LUFT</a>
+<nav aria-label="Main" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 28px;font:500 15px var(--font-sans)">
+<a href="#" aria-current="page" style="color:var(--ink);padding:12px 0;text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:4px;text-underline-offset:6px">Work</a>
+<a href="#" style="color:var(--ink);text-decoration:none;padding:12px 0">Art</a>
+<a href="#" style="color:var(--ink);text-decoration:none;padding:12px 0">Radio Luft</a>
+<button type="button" class="btn btn-accent">Say hi</button>
+</nav>
+</header>

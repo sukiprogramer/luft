@@ -1,0 +1,26 @@
+---
+// A full-width violet or yellow section with 2px rules top and bottom.
+interface Props { tone?: 'violet' | 'yellow'; id?: string; labelledby?: string; as?: 'section' | 'article' }
+const { tone = 'violet', id, labelledby, as: Tag = 'section' } = Astro.props;
+---
+<Tag class:list={['band', `band-${tone}`]} id={id} aria-labelledby={labelledby}>
+  <div class="wrap section"><slot /></div>
+</Tag>
+
+<style>
+  .band {
+    border-top: var(--border-bold) solid var(--on-violet);
+    border-bottom: var(--border-bold) solid var(--on-violet);
+  }
+  .band-violet { background: var(--violet); color: var(--on-violet); }
+  .band-yellow { background: var(--yellow); color: var(--on-yellow); border-color: var(--on-yellow); }
+  /* Display type on violet may be white; a highlighted word is yellow. */
+  .band-violet :global(.disp) { color: var(--white); }
+  .band-violet :global(.disp .accent) { color: var(--yellow); }
+  /* Links and the ink outline follow the band's text colour, not the page's. */
+  .band :global(a:not(.btn)) { color: inherit; }
+  .band :global(.band-img) { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border: var(--border-bold) solid currentColor; }
+  .band :global(.hl) { -webkit-text-stroke-color: var(--on-yellow); }
+  .band :global(.btn-outline) { color: inherit; border-color: currentColor; }
+  .band :global(.btn-accent) { border-color: var(--on-yellow); }
+</style>

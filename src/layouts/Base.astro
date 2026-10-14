@@ -1,0 +1,89 @@
+---
+import '../styles/tokens.css';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SayHiDialog from '../components/SayHiDialog.astro';
+import { site } from '../data/site';
+
+interface Props { title?: string; description?: string; current: string }
+const { title, description = site.description, current } = Astro.props;
+const pageTitle = title ? `${title} · Luft` : 'Luft · Work, art & a little radio';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..900,0..100,0..1&family=Poppins:wght@400;500;600&family=Bitter:wght@400;700&family=Gochi+Hand&display=swap" />
+    <script is:inline>
+      // Theme: an explicit choice (localStorage 'luft-theme' = light|dark) wins, otherwise prefers-color-scheme.
+      try {
+        const t = localStorage.getItem('luft-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header current={current} />
+    <main id="main"><slot /></main>
+    <Footer />
+    <SayHiDialog />
+
+    <script>
+      // Say hi dialog and mobile menu. Native <dialog>.showModal() makes the rest of the page inert,
+      // which traps focus; Esc closes it. Focus goes back to whatever opened it.
+      const hi = document.getElementById('say-hi') as HTMLDialogElement;
+      const menu = document.getElementById('site-menu') as HTMLDialogElement;
+      let opener: HTMLElement | null = null;
+
+      const open = (dialog: HTMLDialogElement, from: HTMLElement) => {
+        opener = from;
+        dialog.showModal();
+        dialog.querySelector<HTMLElement>('[autofocus]')?.focus();
+      };
+      const restoreFocus = () => { opener?.focus(); opener = null; };
+
+      document.querySelectorAll<HTMLElement>('[data-say-hi]').forEach((btn) =>
+        btn.addEventListener('click', () => {
+          // From inside the menu: close the menu and hand focus back to the menu button.
+          const from = menu.open ? document.querySelector<HTMLElement>('[data-menu-open]')! : btn;
+          if (menu.open) menu.close();
+          open(hi, from);
+        }),
+      );
+      document.querySelectorAll<HTMLElement>('[data-menu-open]').forEach((btn) =>
+        btn.addEventListener('click', () => open(menu, btn)),
+      );
+      menu.querySelectorAll<HTMLElement>('[data-menu-close]:not([data-say-hi])').forEach((btn) =>
+        btn.addEventListener('click', () => menu.close()),
+      );
+      menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => menu.close()));
+      hi.querySelector('[data-say-hi-close]')!.addEventListener('click', () => hi.close());
+
+      // Click on the backdrop closes the Say hi dialog.
+      hi.addEventListener('click', (e) => {
+        const r = hi.getBoundingClientRect();
+        const inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+        if (!inside && e.target === hi) hi.close();
+      });
+
+      hi.addEventListener('close', () => { if (!menu.open) restoreFocus(); });
+      menu.addEventListener('close', () => { if (!hi.open) restoreFocus(); });
+
+      // Lock page scroll while a dialog is open.
+      const lock = () => document.documentElement.style.setProperty('overflow', hi.open || menu.open ? 'hidden' : '');
+      new MutationObserver(lock).observe(hi, { attributes: true, attributeFilter: ['open'] });
+      new MutationObserver(lock).observe(menu, { attributes: true, attributeFilter: ['open'] });
+
+      // The menu is for phones; close it if the window grows past the breakpoint.
+      matchMedia('(min-width: 600px)').addEventListener('change', (e) => { if (e.matches && menu.open) menu.close(); });
+    </script>
+  </body>
+</html>

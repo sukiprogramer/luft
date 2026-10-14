@@ -1,0 +1,138 @@
+/* Site-wide rules on top of tokens.css. Every colour, space and radius comes from a token. */
+
+/* The Radio hero and blue show card need a deep blue ground in both themes.
+   In dark mode --blue turns light for links, so the ground switches to --quote-ground. */
+:root {
+  --hero-ground: var(--blue);
+  --on-hero: var(--white);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --hero-ground: var(--quote-ground); }
+}
+:root[data-theme="dark"] { --hero-ground: var(--quote-ground); }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+h1, h2, h3, p, figure, blockquote { margin: 0; }
+
+a { color: var(--blue); }
+a:hover { color: var(--ink); }
+
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute; left: var(--space-4); top: calc(-1 * var(--space-9)); z-index: 100;
+  background: var(--yellow); color: var(--on-yellow); border: var(--border-bold) solid var(--on-yellow);
+  padding: var(--space-3) var(--space-5); border-radius: var(--radius-pill); font-weight: 600;
+}
+.skip-link:focus { top: var(--space-4); }
+
+/* Layout: a full-width band holds a centred wrapper. */
+.wrap {
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.section { padding-block: var(--space-9); }
+@media (max-width: 599px) {
+  .wrap { padding-inline: var(--gutter-mobile); }
+  .section { padding-block: var(--space-8); }
+}
+
+/* Two-column hero that stacks without media queries. */
+.split { display: flex; flex-wrap: wrap; gap: var(--space-7); align-items: center; }
+.split > .wide { flex: 999 1 560px; min-width: 0; }
+.split > .narrow { flex: 1 1 360px; min-width: 0; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: var(--space-5);
+}
+
+.stack { display: flex; flex-direction: column; gap: var(--space-5); }
+
+/* Type */
+.disp { font-family: var(--font-display); font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144; font-weight: 900; }
+.kicker { font: 600 13px/1.4 var(--font-sans); letter-spacing: 3px; text-transform: uppercase; }
+.caps { font: 600 12px/1.4 var(--font-sans); letter-spacing: 2px; text-transform: uppercase; }
+.standfirst { font-size: 18px; line-height: 1.6; color: var(--ink-soft); max-width: 42ch; }
+.slab { font-family: var(--font-slab); }
+.radio-quote { font: 400 20px/1.6 var(--font-slab); }
+.byline { font: 400 15px/1.4 var(--font-slab); }
+.title { font: 500 30px/1.1 var(--font-display); }
+
+.size-xl { font-size: clamp(84px, 10vw, 128px); line-height: 0.88; }
+.size-l { font-size: clamp(52px, 7vw, 96px); line-height: 0.92; }
+.size-m { font-size: clamp(40px, 5vw, 56px); line-height: 0.95; font-weight: 800; }
+.size-headline { font-family: var(--font-display); font-variation-settings: normal; font-weight: 500; font-size: clamp(40px, 6vw, 88px); line-height: 0.98; }
+
+/* A highlighted word: yellow fill with an ink outline. */
+.hl { color: var(--yellow); -webkit-text-stroke: 2px var(--ink); paint-order: stroke fill; }
+
+/* Section head: a 2px rule, a serif title and a link on the right. */
+.section-head {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-4);
+  border-top: var(--border-bold) solid var(--line);
+  padding-top: var(--space-5);
+  margin-bottom: var(--space-7);
+}
+
+/* Case-study masthead: 3px rule on top, 1px below. */
+.masthead {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2);
+  border-top: var(--border-masthead) solid currentColor;
+  border-bottom: var(--border-hairline) solid currentColor;
+  padding-block: var(--space-3);
+}
+
+/* Fact row under a case-study headline. */
+.facts {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  border-top: var(--border-hairline) solid currentColor;
+  border-bottom: var(--border-hairline) solid currentColor;
+}
+.facts > div { padding: var(--space-4) var(--space-4) var(--space-4) 0; display: flex; flex-direction: column; gap: var(--space-1); }
+.facts dt { font: 600 11px/1.4 var(--font-sans); letter-spacing: 2px; text-transform: uppercase; }
+.facts dd { margin: 0; font-size: 15px; }
+
+/* Photo and ink placeholders, shown until Suki sends real images. */
+.ph-photo {
+  background: var(--photo); color: var(--on-photo);
+  display: flex; align-items: flex-end; padding: var(--space-4);
+  font: 500 12px/1.4 var(--font-sans); letter-spacing: 1px; text-transform: uppercase;
+}
+.ph-ink {
+  border: var(--border-bold) dashed currentColor;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  padding: var(--space-4); font: 500 12px/1.4 var(--font-sans);
+}
+
+/* Colour-band images: 2px border, small tilt. */
+.tilt-l { transform: rotate(-2deg); }
+.tilt-r { transform: rotate(2deg); }
+
+/* Dark-mode legibility for a dialog backdrop */
+::backdrop { background: var(--scrim); }

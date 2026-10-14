@@ -1,0 +1,166 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import ColourBand from '../components/ColourBand.astro';
+import PosterCard from '../components/PosterCard.astro';
+import Sticker from '../components/Sticker.astro';
+import Squiggle from '../components/Squiggle.astro';
+import learn from '../assets/radio-luft/how-do-we-learn.jpg';
+import mozaik from '../assets/radio-luft/mozaik.jpg';
+import eosImg from '../assets/radio-luft/eos.jpg';
+
+const ideas = [
+  { n: 'Idea 01', stage: 'Sketch', tint: 'yellow', tilt: 'l' },
+  { n: 'Idea 02', stage: 'Wireframe', tint: 'violet', tilt: '' },
+  { n: 'Idea 03', stage: 'Sketch', tint: 'blue', tilt: 'r' },
+];
+---
+<Base title="Art" current="/art/" description="Radio Luft, Comusity and a notebook of app ideas.">
+  <section class="wrap intro">
+    <div class="intro-head">
+      <h1 class="disp art-title">Art</h1>
+      <Squiggle variant="ticks" />
+    </div>
+    <p class="standfirst intro-text">Three things I keep coming back to: a radio for friends, a community, and a notebook of apps I'd like to exist.</p>
+    <nav aria-label="Art sections" class="pills">
+      <a href="#radio" class="pill pill-violet">01 · Radio Luft</a>
+      <a href="#comusity" class="pill pill-yellow">02 · Comusity</a>
+      <a href="#apps" class="pill">03 · App ideas</a>
+    </nav>
+  </section>
+
+  <!-- 01 Radio Luft -->
+  <ColourBand id="radio" labelledby="radio-h">
+    <div class="split">
+      <div class="narrow stack">
+        <span class="kicker">01</span>
+        <h2 id="radio-h" class="disp size-l">Radio <span class="accent">Luft</span></h2>
+        <p class="radio-quote">Music selections, shows and new music retreats in Belgrade. The covers, type and posts are all designed by me.</p>
+        <Button href="/radio-luft/" variant="accent">Tune in</Button>
+      </div>
+      <div class="wide trio">
+        <Image src={learn} alt="Radio Luft post: How do we learn?" class="band-img tilt-l" widths={[300, 600]} sizes="(max-width: 700px) 33vw, 260px" />
+        <Image src={mozaik} alt="Radio Luft post: Mozaik" class="band-img drop" widths={[300, 600]} sizes="(max-width: 700px) 33vw, 260px" />
+        <Image src={eosImg} alt="Radio Luft post: the Eos playlist" class="band-img tilt-r" widths={[300, 600]} sizes="(max-width: 700px) 33vw, 260px" />
+      </div>
+    </div>
+  </ColourBand>
+
+  <!-- 02 Comusity -->
+  <section id="comusity" class="wrap section comusity" aria-labelledby="com-h">
+    <PosterCard class="com-poster" minHeight="460px">
+      <Sticker slot="doodle" size={64} fill="paper" />
+      <div slot="headline" class="stack com-head">
+        <span class="kicker">02</span>
+        <h2 id="com-h" class="disp">Comusity</h2>
+      </div>
+      <p>[What Comusity is, who it brings together, and what you made for it.]</p>
+    </PosterCard>
+    <div class="com-grid">
+      <div class="ph-photo span-2" role="img" aria-label="Black and white photo from a Comusity event (placeholder)">[ B&amp;W photo from a Comusity event ]</div>
+      <div class="ph-ink square" role="img" aria-label="Comusity poster (placeholder)">[ Poster ]</div>
+      <div class="ph-ink square" role="img" aria-label="Ink drawing (placeholder)">[ Ink drawing ]</div>
+    </div>
+  </section>
+
+  <!-- 03 App ideas -->
+  <section id="apps" class="apps" aria-labelledby="apps-h">
+    <div class="wrap section apps-inner">
+      <div class="apps-head">
+        <div class="stack apps-title">
+          <span class="kicker">03</span>
+          <h2 id="apps-h" class="disp size-l">App <span class="blue">ideas</span></h2>
+        </div>
+        <p class="apps-intro">Small apps from my notebook, sketched before they're built. [Add a line on how you pick them.]</p>
+      </div>
+      <ul class="ideas" role="list">
+        {ideas.map((idea) => (
+          <li class:list={['idea', idea.tilt && `tilt-${idea.tilt}-1`]}>
+            <div class="idea-top"><span class="caps">{idea.n}</span><span class="stage">{idea.stage}</span></div>
+            <div class="sketch" aria-hidden="true">
+              <div class="bar"></div>
+              <div class:list={['block', `tint-${idea.tint}`]}></div>
+              <div class="line"></div>
+              <div class="line short"></div>
+              <div class="cta"></div>
+            </div>
+            <h3 class="disp idea-title">[App idea]</h3>
+            <p class="idea-text">[One line: who it is for and what it does.]</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .intro { padding-block: var(--space-7); display: flex; flex-direction: column; gap: 28px; }
+  .intro-head { display: flex; flex-wrap: wrap; gap: var(--space-6); align-items: flex-end; justify-content: space-between; }
+  .art-title { font-size: clamp(84px, 11vw, 160px); line-height: 0.85; }
+  .intro-text { max-width: 640px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 10px; }
+  .pill {
+    min-height: var(--touch-min); display: inline-flex; align-items: center;
+    padding: 0 var(--space-5); border-radius: var(--radius-pill);
+    border: var(--border-bold) solid var(--line); background: var(--paper); color: var(--ink);
+    text-decoration: none; font: 500 14px var(--font-sans);
+  }
+  .pill:hover { color: var(--ink); background: var(--paper-deep); }
+  .pill-violet { background: var(--violet); color: var(--on-violet); border-color: var(--on-violet); }
+  .pill-violet:hover { background: var(--violet); color: var(--on-violet); }
+  .pill-yellow { background: var(--yellow); color: var(--on-yellow); border-color: var(--on-yellow); }
+  .pill-yellow:hover { background: var(--yellow); color: var(--on-yellow); }
+
+  .trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); }
+  .trio :global(.drop) { margin-top: var(--space-6); object-position: top; }
+  .trio :global(.tilt-r) { object-position: top left; }
+
+  .comusity { display: flex; flex-wrap: wrap; gap: var(--space-6); }
+  .comusity :global(.com-poster) { flex: 1 1 420px; min-width: 0; }
+  .com-head :global(h2) { font-size: clamp(48px, 4.6vw, 72px) !important; }
+  .com-head { gap: var(--space-3); }
+  .com-grid { flex: 999 1 560px; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+  .span-2 { grid-column: span 2; aspect-ratio: 2 / 1; }
+  .square { aspect-ratio: 1 / 1; }
+
+  .apps { background: var(--paper-deep); border-top: var(--border-bold) solid var(--line); }
+  .apps-inner { display: flex; flex-direction: column; gap: 40px; padding-bottom: var(--space-10); }
+  .apps-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--space-4); }
+  .apps-title { gap: var(--space-3); }
+  .blue { color: var(--blue); }
+  .apps-intro { font-size: 16px; line-height: 1.6; color: var(--ink-soft); max-width: 420px; }
+  .ideas {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-5);
+  }
+  .idea { background: var(--paper); border: var(--border-bold) solid var(--line); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-4); }
+  .tilt-l-1 { transform: rotate(-1deg); }
+  .tilt-r-1 { transform: rotate(1deg); }
+  .idea-top { display: flex; justify-content: space-between; align-items: center; }
+  .stage { font: 600 11px/1 var(--font-sans); letter-spacing: 2px; text-transform: uppercase; padding: 6px 10px; border: 1.5px solid var(--line); border-radius: var(--radius-pill); }
+  .sketch {
+    align-self: center; width: 120px; height: 220px; border: var(--border-bold) solid var(--line); border-radius: 22px;
+    background: var(--paper); padding: 14px 10px; display: flex; flex-direction: column; gap: var(--space-2);
+  }
+  .sketch .bar { height: 10px; width: 60%; background: var(--ink); }
+  .sketch .block { height: 46px; border: 1.5px solid var(--line); }
+  .tint-yellow { background: var(--yellow); }
+  .tint-violet { background: var(--violet); }
+  .tint-blue { background: var(--blue); }
+  .sketch .line { height: 8px; width: 90%; background: var(--rule-soft); }
+  .sketch .line.short { width: 70%; }
+  .sketch .cta { margin-top: auto; height: 22px; background: var(--ink); border-radius: var(--radius-pill); }
+  .idea-title { font-size: 34px; line-height: 1; font-weight: 800; }
+  .idea-text { font-size: 14px; line-height: 1.6; }
+
+  /* Phones: the idea cards scroll sideways. */
+  @media (max-width: 599px) {
+    .ideas {
+      display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+      margin-inline: calc(-1 * var(--gutter-mobile)); padding: var(--space-2) var(--gutter-mobile) var(--space-4);
+    }
+    .idea { flex: 0 0 78%; scroll-snap-align: start; }
+    .apps-inner { padding-bottom: var(--space-8); }
+  }
+</style>

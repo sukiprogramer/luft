@@ -1,0 +1,66 @@
+---
+// The dark footer that closes every page.
+import Button from './Button.astro';
+import { pages, site } from '../data/site';
+---
+<footer class="site-footer" id="contact">
+  <div class="wrap footer-inner">
+    <div class="footer-top">
+      <div class="signoff">
+        <h2 class="disp footer-title">Say <span class="accent">hi.</span></h2>
+        <Button variant="accent" onNight fullOnPhone data-say-hi>Get in touch</Button>
+      </div>
+      <div class="footer-links">
+        <nav aria-label="Footer" class="link-col">
+          <span class="footer-label">Pages</span>
+          {pages.map((p) => <a href={p.href}>{p.label}</a>)}
+        </nav>
+        <div class="link-col">
+          <span class="footer-label">Elsewhere</span>
+          <a href={site.linkedin.href}>LinkedIn</a>
+          <a href={site.instagram.href}>Instagram</a>
+          <a href={site.emailHref}>{site.email}</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-wordmark">LUFT</span>
+      <span>Made with paper, ink and a lot of music. © {site.year} {site.name}</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer { background: var(--night); color: var(--on-night); }
+  .footer-inner { padding-block: 88px var(--space-7); display: flex; flex-direction: column; gap: 56px; }
+  .footer-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: var(--space-6); }
+  .signoff { display: flex; flex-direction: column; gap: var(--space-5); }
+  .footer-title { font-size: clamp(64px, 10vw, 128px); line-height: 0.9; }
+  .footer-title .accent { color: var(--yellow); }
+  .footer-links { display: flex; flex-wrap: wrap; gap: var(--space-7); }
+  .link-col { display: flex; flex-direction: column; font-size: 15px; }
+  .footer-label {
+    font: 600 11px/1.4 var(--font-sans); letter-spacing: 2px; text-transform: uppercase;
+    color: var(--on-photo); margin-bottom: var(--space-2);
+  }
+  .link-col a {
+    color: var(--on-night); text-decoration: none;
+    min-height: var(--touch-min); display: inline-flex; align-items: center;
+  }
+  .link-col a:hover { color: var(--yellow); }
+  .footer-bottom {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-4);
+    border-top: var(--border-hairline) solid var(--ink-soft); padding-top: var(--space-5);
+    font-size: 13px; color: var(--on-photo);
+  }
+  .footer-wordmark { font-family: var(--font-hand); font-size: 28px; letter-spacing: 2px; color: var(--on-night); }
+  @media (max-width: 599px) {
+    .footer-inner { padding-block: var(--space-8) var(--space-6); gap: var(--space-7); }
+    .footer-top { align-items: stretch; }
+    .signoff { width: 100%; }
+    .footer-title { font-size: 64px; }
+    .footer-links { width: 100%; flex-direction: column; gap: var(--space-5); }
+    .link-col { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 0 var(--space-5); }
+    .footer-label { width: 100%; margin-bottom: 0; }
+  }
+</style>
